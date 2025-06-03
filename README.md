@@ -1,5 +1,6 @@
 # IDA Pro MCP \w ChatGPT
 
+![image](https://github.com/user-attachments/assets/0d3c7b73-20b9-4191-91db-3a74a127ac95)
 
 
 
