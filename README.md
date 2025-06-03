@@ -2,7 +2,6 @@
 
 
 
-<img width="380" alt="image" src="https://github.com/user-attachments/assets/86a9c3a0-e69c-4c58-abec-54c2e45d422f" />
 
 - Follow original install process
 - Create a Ngrok account
