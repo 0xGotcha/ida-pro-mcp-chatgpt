@@ -189,8 +189,8 @@ class MCPHTTPServer(http.server.HTTPServer):
     allow_reuse_address = False
 
 class Server:
-    HOST = "localhost"
-    PORT = 13337
+    HOST = "0.0.0.0"
+    PORT = 80
 
     def __init__(self):
         self.server = None
@@ -227,7 +227,7 @@ class Server:
             self.server.serve_forever()
         except OSError as e:
             if e.errno == 98 or e.errno == 10048:  # Port already in use (Linux/Windows)
-                print("[MCP] Error: Port 13337 is already in use")
+                print("[MCP] Error: Port is already in use")
             else:
                 print(f"[MCP] Server error: {e}")
             self.running = False
