@@ -1,4 +1,146 @@
-# IDA Pro MCP
+# IDA Pro MCP \w ChatGPT
+
+
+
+<img width="380" alt="image" src="https://github.com/user-attachments/assets/86a9c3a0-e69c-4c58-abec-54c2e45d422f" />
+
+- Follow original install process
+- Create a Ngrok account
+- Install ngrok
+- ngrok http 80
+- Create your own ChatGPT Plugin by applying this yaml and changing the server.
+
+
+```
+openapi: 3.1.0
+info:
+  title: MCP API
+  version: 1.0.0
+  description: >
+    Exposes a JSON-RPC endpoint at /mcp for various queries including metadata, function listing, decompilation, and
+    more.
+servers:
+  - url: https://a6c5-777-777-777-777.ngrok-free.app
+paths:
+  /mcp:
+    post:
+      summary: JSON-RPC request to MCP
+      operationId: mcpRpc
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - jsonrpc
+                - method
+                - params
+                - id
+              properties:
+                jsonrpc:
+                  type: string
+                  enum:
+                    - "2.0"
+                  example: "2.0"
+                  description: JSON-RPC protocol version.
+                method:
+                  type: string
+                  enum:
+                    - get_metadata
+                    - get_function_by_name
+                    - get_function_by_address
+                    - get_current_address
+                    - get_current_function
+                    - convert_number
+                    - list_functions
+                    - list_globals_filter
+                    - list_globals
+                    - list_strings_filter
+                    - list_strings
+                    - list_local_types
+                    - decompile_function
+                    - disassemble_function
+                    - get_xrefs_to
+                    - get_xrefs_to_field
+                    - get_entry_points
+                    - set_comment
+                    - rename_local_variable
+                    - rename_global_variable
+                    - set_global_variable_type
+                    - rename_function
+                    - set_function_prototype
+                    - declare_c_type
+                    - set_local_variable_type
+                  example: get_metadata
+                  description: Supported method.
+                params:
+                  type: array
+                  items: {}
+                  example: []
+                  description: Parameters for the RPC method. Each method's parameter structure may differ.
+                id:
+                  type: integer
+                  example: 1
+                  description: Request identifier.
+      responses:
+        "200":
+          description: JSON-RPC response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jsonrpc:
+                    type: string
+                    example: "2.0"
+                  id:
+                    type: integer
+                    example: 1
+                  result:
+                    description: The result from the JSON-RPC call. Type is arbitrary.
+                  error:
+                    description: Error information, if the call failed.
+                additionalProperties: true
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Simple [MCP Server](https://modelcontextprotocol.io/introduction) to allow vibe reversing in IDA Pro.
 
